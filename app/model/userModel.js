@@ -85,7 +85,7 @@ class Model {
                 callback(error)
             } else {
                 let response = {
-                    message: "Registeration Successful",
+                    // status: true,
                     email: result.email
                 }
                 callback(null, response)
@@ -96,7 +96,7 @@ class Model {
     //Login
     login(req, callback) {
         let response = {
-            message: "Login Successful",
+            id: req._id,
             firstName: req.firstName,
             email: req.email,
         }
@@ -114,7 +114,9 @@ class Model {
             )
                 .then(res => {
                     resolve({
-                        message: 'Password updated successfully'
+                        //reset_response_output
+                        status: true,
+                        message: 'password updated'
                     })
                 })
                 .catch(err => {

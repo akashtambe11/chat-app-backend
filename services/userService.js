@@ -10,7 +10,7 @@ class UserServices {
                 .then(data => {
                     if (data) {
                         reject({
-                            message: 'Email <' + req.email + '> already registered'
+                            message: 'email already registered'
                         });
                     }
                     else {
@@ -57,22 +57,26 @@ class UserServices {
                             userModel.login(data, (err, res) => {
                                 if (err)
                                     callback(err);
-                                else
+                                else {
+                                    // console.log("ID===", data._id);
+
                                     callback(null, res);
+                                }
+
                             });
                         } else {
                             callback({
-                                message: 'Invalid Password'
+                                message: 'invalid password'
                             })
                         }
                     })
                 } else {
-                    callback({ message: "User is not verified yet. Please check your Email" })
+                    callback({ message: "user not verified" })
                 }
             })
             .catch(err => {
                 callback({
-                    message: 'User <' + req.email + '> is not Registered'
+                    message: 'user not registered'
                 })
             })
     }
@@ -83,12 +87,13 @@ class UserServices {
             userModel.findOne({ email: req.email })
                 .then(data => {
                     if (data.isVerified) {
+
+                        //forgot_response_output
                         let result = {
-                            message: "Success",
+                            status: true,
                             id: data._id,
-                            firstName: data.firstName,
                             email: data.email,
-                            message: "Forgot password link has been sent to given Email"
+                            message: "forgot email sent"
                         }
                         resolve(result);
                     } else {

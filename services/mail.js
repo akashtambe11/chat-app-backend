@@ -2,7 +2,7 @@ require('dotenv').config();
 const nodemailer = require('nodemailer');
 
 let sendVerifyLink = (url, req) => {
-    
+
     var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -10,19 +10,19 @@ let sendVerifyLink = (url, req) => {
             pass: process.env.MY_G_PWD
         }
     });
-                                          
+
     var mailOptions = {
         from: 'akashtambe11@gmail.com',
         to: req,
         subject: 'Login Verification Link',
         text: 'Click on the following link to VERIFY your ChatApp account: \n' + url
     };
-                                                          
+
     transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
             console.log(error);
         } else {
-            console.log('Email sent: ' + info.response);                                                            
+            console.log('email sent: ' + info.response);
         }
     });
 }
@@ -47,7 +47,7 @@ let sendForgotLink = (url, req) => {
         if (error) {
             console.log(error);
         } else {
-            console.log('Email sent: ' + info.response);
+            console.log('email sent: ' + info.response);
         }
     });
 }

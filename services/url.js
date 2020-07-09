@@ -33,11 +33,13 @@ class UrlService {
                                 if (error) {
                                     callback(error);
                                 } else {
+
+                                    //register_response_output
                                     let response = {
-                                        success: true,
+                                        status: true,
                                         shortUrl: shortUrl,
                                         email: data.email,
-                                        message: 'User has been registered in Database'
+                                        message: 'user registered'
                                     };
                                     callback(null, response);
                                 }
@@ -52,13 +54,13 @@ class UrlService {
                 let response =
                 {
                     success: false,
-                    message: "Server error",
+                    message: "server error",
                     error: error
                 };
                 callback(response);
             }
         } else {
-            callback({ message: "Invalid base URL" })
+            callback({ message: "invalid base url" })
         }
     }
 
@@ -70,8 +72,11 @@ class UrlService {
                 if (err) {
                     callback(err);
                 } else {
+
+                    //verify_response_output
                     let response = {
-                        message: "User Verified"
+                        status: true,
+                        message: "user verified"
                     }
                     callback(null, response);
                 }

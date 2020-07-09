@@ -10,7 +10,7 @@ class UserController {
     async register(req, res) {
         try {
             //Postman Body - validation
-            req.check('firstName', 'Length of name should be min 3 characters').isLength({ min: 3 });
+            req.check('firstName', 'Length of name should be min 3 characters').isLength({ min: 2 });
             req.check('lastName', 'Last Name cannot be empty').notEmpty();
             req.check('email', 'Invalid email').isEmail();
             req.check('password', 'Invalid password').notEmpty().isLength({ min: 6 });
@@ -25,7 +25,7 @@ class UserController {
 
                     let request = {
                         email: data.email,
-                        url: 'http://localhost:3000/verify/'
+                        url: 'http://localhost:4200/verify/'
                     }
                     urlService.shortenUrl(request, (err, result) => {
                         if (err) {
@@ -37,7 +37,7 @@ class UserController {
                     })
                 })
                 .catch(err => {
-                    console.log(err);
+                    // console.log(err);
                     res.status(422).send(err);
                 })
         }
@@ -68,11 +68,15 @@ class UserController {
                         id: data._id,
                         email: data.email
                     }
+
                     let token = authentication.generateToken(payload);
 
+                    //login_response_output
                     let result = {
+                        status: true,
                         response: data,
-                        token: token
+                        token: token,
+                        message: 'login succesful'
                     }
                     res.status(200).send(result);
                 }
@@ -111,7 +115,7 @@ class UserController {
                             if (err) {
                                 res.status(422).send(err);
                             } else {
-                                let url = 'http://localhost:3000/reset/' + token;
+                                let url = 'http://localhost:4200/reset/' + token;
                                 mail.sendForgotLink(url, data.email);
                                 res.status(200).send(data);
                             }

@@ -3,6 +3,7 @@ var jwt = require('jsonwebtoken');
 const userModel = require('../app/model/userModel');
 
 let generateToken = (payload) => {
+    // console.log(payload);
 
     let token = jwt.sign(
         payload,
@@ -23,17 +24,15 @@ let checkToken = (req, res, next) => {
 
             if (err) {
                 req.decoded = null;
-                res.status(422).send(err + '\nToken has been Expired!');
+                res.status(422).send(err + '\ntoken expired');
             } else {
-                console.log("Login Token Verified");
-
                 req.decoded = decoded;
                 next();
             }
         });
     } else {
         return res.status(422).send({
-            message: 'Token not Found!'
+            message: 'token not found'
         });
     }
 }
@@ -48,7 +47,7 @@ let resetToken = (req, res, next) => {
 
             if (err) {
                 req.decoded = null;
-                res.status(422).send(err + '\nToken has been Expired!');
+                res.status(422).send(err + '\ntoken expired');
             } else {
                 req.decoded = decoded;
                 next();
@@ -56,7 +55,7 @@ let resetToken = (req, res, next) => {
         });
     } else {
         return res.status(422).send({
-            message: 'Token not Found!'
+            message: 'token not found'
         });
     }
 }
@@ -68,7 +67,7 @@ let verificationToken = (req, res, next) => {
         .then(data => {
 
             if (data == null) {
-                let response = { message: "No data Found" };
+                let response = { message: "no data found" };
                 res.status(422).send(response);
 
             } else {
@@ -80,7 +79,7 @@ let verificationToken = (req, res, next) => {
                         req.decoded = null;
                         res.status(422).send(err);
                     } else {
-                        console.log('Verification Tokens has been matched');
+                        console.log('verification token matched');
                         req.decoded = decoded;
                         req.authenticated = true;
                         next();
