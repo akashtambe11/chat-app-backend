@@ -10,7 +10,7 @@ class UserServices {
                 .then(data => {
                     if (data) {
                         reject({
-                            message: 'email already registered'
+                            message: 'Email - ID already Exist'
                         });
                     }
                     else {
@@ -58,25 +58,24 @@ class UserServices {
                                 if (err)
                                     callback(err);
                                 else {
-                                    // console.log("ID===", data._id);
-
                                     callback(null, res);
                                 }
-
                             });
                         } else {
                             callback({
-                                message: 'invalid password'
+                                message: 'Invalid Password'
                             })
                         }
                     })
                 } else {
-                    callback({ message: "user not verified" })
+                    callback({
+                        message: "User not verified"
+                    })
                 }
             })
             .catch(err => {
                 callback({
-                    message: 'user not registered'
+                    message: 'User not Registered'
                 })
             })
     }
@@ -98,12 +97,14 @@ class UserServices {
                         resolve(result);
                     } else {
                         reject({
-                            message: 'User not verified yet'
+                            message: 'User not Verified'
                         });
                     }
                 })
                 .catch(err => {
-                    reject(err);
+                    reject({
+                        message: 'User not registered'
+                    });
                 });
         });
     }

@@ -5,18 +5,12 @@ const messageSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    senderName: {
-        type: String,
-        required: true
-    },
+
     receiverId: {
         type: String,
         required: true
     },
-    receiverName: {
-        type: String,
-        required: true
-    },
+
     message: {
         type: String,
         required: true
@@ -32,9 +26,7 @@ class ChatModel {
         try {
             const message = new Message({
                 senderId: req.senderId,
-                senderName: req.senderName,
                 receiverId: req.receiverId,
-                receiverName: req.receiverName,
                 message: req.message
             })
 
@@ -42,8 +34,6 @@ class ChatModel {
                 if (err) {
                     callback(err);
                 } else {
-                    console.log("Message Sent \nTo:   " + data.receiverName + "\nFrom: " + data.senderName);
-
                     callback(null, data);
                 }
             })

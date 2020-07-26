@@ -7,9 +7,7 @@ class ChatController {
         try {
             let messageData = {
                 senderId: req.body.senderId,
-                senderName: req.body.senderName,
                 receiverId: req.body.receiverId,
-                receiverName: req.body.receiverName,
                 message: req.body.message
             },
                 response = {};

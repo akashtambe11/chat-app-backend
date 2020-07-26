@@ -37,7 +37,6 @@ class UserController {
                     })
                 })
                 .catch(err => {
-                    // console.log(err);
                     res.status(422).send(err);
                 })
         }

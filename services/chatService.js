@@ -2,6 +2,7 @@ const chatModel = require('../app/model/chatModel');
 var userModel = require('../app/model/userModel');
 
 class ChatService {
+
     sendMessage(req, callback) {
         try {
             chatModel.sendMessage(req, (err, data) => {
@@ -15,7 +16,6 @@ class ChatService {
             console.log("Error: ", err);
         }
     }
-
 
     getMessage(req, callback) {
 

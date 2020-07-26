@@ -3,8 +3,8 @@ var jwt = require('jsonwebtoken');
 const userModel = require('../app/model/userModel');
 
 let generateToken = (payload) => {
-    // console.log(payload);
 
+    // console.log(payload);
     let token = jwt.sign(
         payload,
         process.env.JWT_KEY,
@@ -79,7 +79,7 @@ let verificationToken = (req, res, next) => {
                         req.decoded = null;
                         res.status(422).send(err);
                     } else {
-                        console.log('verification token matched');
+                        console.log('token matched');
                         req.decoded = decoded;
                         req.authenticated = true;
                         next();

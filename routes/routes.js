@@ -11,7 +11,7 @@ router.post('/forgot', userCtrl.forgot);
 router.post('/reset/:token', auth.resetToken, userCtrl.reset);
 router.post('/verify/:shortedUrl', auth.verificationToken, userCtrl.verifyMail);
 
-router.get('/dashboard', auth.checkToken, userCtrl.getAllUsers);
+router.get('/usersList', auth.checkToken, userCtrl.getAllUsers);
 
 // Accessing methods from ../controller/chat
 router.post('/sendMessage', auth.checkToken, chatCtrl.sendMessage);

@@ -85,7 +85,6 @@ class Model {
                 callback(error)
             } else {
                 let response = {
-                    // status: true,
                     email: result.email
                 }
                 callback(null, response)
@@ -127,7 +126,7 @@ class Model {
 
     getAllUsers(req, callback) {
 
-        User.find({}, { "email": 1 }, (err, result) => {
+        User.find({}, { "firstName": 1, "lastName": 1 }, (err, result) => {
             if (err) {
                 callback(err);
             } else {
