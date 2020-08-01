@@ -101,7 +101,7 @@ class Model {
         }
         callback(null, response)
     }
-
+ 
     //Reset
     reset(req) {
 
