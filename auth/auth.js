@@ -4,7 +4,9 @@ const userModel = require('../app/model/userModel');
 
 let generateToken = (payload) => {
 
-    // console.log(payload);
+    console.log(payload);
+
+    
     let token = jwt.sign(
         payload,
         process.env.JWT_KEY,
@@ -71,7 +73,9 @@ let verificationToken = (req, res, next) => {
                 res.status(422).send(response);
 
             } else {
-                let url = data.longUrl.slice(29);
+                let urlArr = data.long_url.split('/');
+                // Taking value after last slash (/)
+                let url = urlArr[urlArr.length - 1];
 
                 jwt.verify(url, process.env.JWT_KEY, (err, decoded) => {
                     if (err) {

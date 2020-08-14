@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 let hashPassword = (req) => {
 
     return new Promise((resolve, reject) => {
-        bcrypt.hash(req, 10)
+        bcrypt.hash(req, 10) // 10:  Salt Round
             .then(data => {
                 resolve(data);
             })

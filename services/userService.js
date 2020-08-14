@@ -12,8 +12,7 @@ class UserServices {
                         reject({
                             message: 'Email - ID already Exist'
                         });
-                    }
-                    else {
+                    } else {
                         let hash = util.hashPassword(req.password)
                         hash.then(data => {
                             let request = {
@@ -52,8 +51,8 @@ class UserServices {
 
                         if (err) {
                             callback(err);
+                            
                         } else if (result) {
-
                             userModel.login(data, (err, res) => {
                                 if (err)
                                     callback(err);

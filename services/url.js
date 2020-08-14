@@ -65,6 +65,7 @@ class UrlService {
     }
 
     verifyUrl(req, callback) {
+        
         userModel.update(
             { email: req.email },
             { isVerified: true },

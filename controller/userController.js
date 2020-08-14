@@ -51,7 +51,7 @@ class UserController {
 
     async login(req, res) {
         try {
-            req.checkBody('email', 'invalid email').isEmail();
+            req.checkBody('email', 'Invalid email').isEmail();
             req.check('password', 'Invalid password').notEmpty().isLength({ min: 6 });
 
             const errors = await req.validationErrors();
@@ -64,7 +64,7 @@ class UserController {
                     res.status(422).send(err);
                 } else {
                     let payload = {
-                        id: data._id,
+                        id: data.id,
                         email: data.email
                     }
 
@@ -103,7 +103,7 @@ class UserController {
                 .then(data => {
                     let payload = {
                         email: data.email,
-                        id: data._id
+                        id: data.id
                     }
                     let token = authentication.generateToken(payload);
 
